@@ -14,8 +14,8 @@ def webpToPNG(oldBaseFilePath, oldFileName, oldFileExtension, newBaseFilePath, n
         file = Image.open(oldBaseFilePath + oldFileName + oldFileExtension).convert("RGB")
         file.save(newBaseFilePath + newFileName + newFileExtension, newFileExtension[1:])
         print("Success. File output to: " + newBaseFilePath + newFileName + newFileExtension)
-    except Exception:
-        print("Conversion failed: ", Exception)
+    except Exception as e:
+        print("Conversion failed: ", e)
 
 oldBaseFilePath = "C:\\Users\\David Caven\\Pictures\\wallpaper\\"
 oldFileName = "astronaut"
