@@ -1,6 +1,7 @@
-from urllib import response
+#pip install PIL
 from PIL import Image
 from os.path import exists
+import os
 
 def webpToPNG(oldBaseFilePath, oldFileName, oldFileExtension, newBaseFilePath, newFileName, newFileExtension) :
     try :
@@ -17,11 +18,25 @@ def webpToPNG(oldBaseFilePath, oldFileName, oldFileExtension, newBaseFilePath, n
     except Exception as e:
         print("Conversion failed: ", e)
 
-oldBaseFilePath = "C:\\Users\\David Caven\\Pictures\\wallpaper\\"
-oldFileName = "astronaut"
-oldFileExtension = ".webp"
-newBaseFilePath = "C:\\Users\\David Caven\\Pictures\\wallpaper\\"
-newFileName = "astronaut"
-newFileExtension = ".png"
+def main():
+    # oldBaseFilePath = ""C:\\my\\file\\path\\here\\"
+    # oldFileName = "myFileNameHere"
+    # oldFileExtension = ".webp"
+    # newBaseFilePath = ""C:\\my\\file\\path\\here\\"
+    # newFileName = "myFileNameHere"
+    # newFileExtension = ".png"
+    # webpToPNG(oldBaseFilePath, oldFileName, oldFileExtension, newBaseFilePath, newFileName, newFileExtension)
+    convertAllPicturesInDirectory("C:\\my\\file\\path\\here\\", ".webp")
 
-webpToPNG(oldBaseFilePath, oldFileName, oldFileExtension, newBaseFilePath, newFileName, newFileExtension)
+def convertAllWebpPicturesInDirectoryToPNG(directory, oldExtension):
+    oldExtension = ".webp"
+    newFileExtension = ".png"
+
+    files = os.listdir(directory)
+    for file in files:
+        if file.endswith(oldExtension):
+            fileWithoutExtension = file.replace(oldExtension, "")
+            webpToPNG(directory, fileWithoutExtension, oldExtension, directory, fileWithoutExtension, newFileExtension)
+
+if(__name__ == "__main__"):
+    main()
